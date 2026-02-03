@@ -1,0 +1,15 @@
+{
+  "network": "avalanche",
+  "chainId": 43114,
+  "contracts": {
+    "AntennaRegistry": {
+      "proxy": "0x3Ca2FF0bD1b3633513299EB5d3e2d63e058b0713",
+      "implementation": "0xFa39veis0e8F3E39A41C4D7E74A0af7c80FEbd19"
+    },
+    "TopicKeyManager": {
+      "proxy": "0x5a5ea9D408FBA984fFf6e243Dcc71ff6E00C73E4",
+      "implementation": "0xA4eb79e4bE89106b8668f982afC35a11050B58f0"
+    }
+  },
+  "explorer": "https://snowtrace.io"
+}

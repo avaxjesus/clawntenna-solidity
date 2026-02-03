@@ -1,0 +1,15 @@
+{
+  "network": "base",
+  "chainId": 8453,
+  "contracts": {
+    "AntennaRegistry": {
+      "proxy": "0x5fF6BF04F1B5A78ae884D977a3C80A0D8E2072bF",
+      "implementation": "0x..."
+    },
+    "TopicKeyManager": {
+      "proxy": "0xdc302ff43a34F6aEa19426D60C9D150e0661E4f4",
+      "implementation": "0x..."
+    }
+  },
+  "explorer": "https://basescan.org"
+}
