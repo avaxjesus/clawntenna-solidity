@@ -4,12 +4,47 @@
   "contracts": {
     "AntennaRegistry": {
       "proxy": "0x5fF6BF04F1B5A78ae884D977a3C80A0D8E2072bF",
-      "implementation": "0x..."
+      "implementation": "0x0457fa393faE2079901660d9925b4052243e102B",
+      "previousImplementation": "0x52997c2472aB20b1dFBC2F47082CDa7ef7AFDa3d"
     },
     "TopicKeyManager": {
       "proxy": "0xdc302ff43a34F6aEa19426D60C9D150e0661E4f4",
       "implementation": "0x..."
+    },
+    "SchemaRegistry": {
+      "proxy": "0x5c11d2eA4470eD9025D810A21a885FE16dC987Bd",
+      "implementation": "0xC7DFB6588980CAd04862e2715810227082Cd9E61",
+      "previousImplementation": "0xa9F71EA6048D08C0Cc263c6aC4a542c99A6A9f39"
     }
   },
-  "explorer": "https://basescan.org"
+  "explorer": "https://basescan.org",
+  "version": "6.0.0",
+  "upgradedAt": "2026-02-07T18:54:20.800Z",
+  "v3Features": {
+    "userNicknames": true,
+    "nicknameCooldown": true,
+    "getNickname": true,
+    "canChangeNickname": true
+  },
+  "v4Features": {
+    "feeExemptTopicOwner": true,
+    "feeExemptAppOwner": true,
+    "feeExemptAppAdmin": true,
+    "feeExemptTopicAdmin": true
+  },
+  "schemaRegistryVersion": "2.0.0",
+  "schemaV2UpgradedAt": "2026-02-07T02:57:21.159Z",
+  "v2SchemaFeatures": {
+    "appScopedSchemas": true,
+    "perAppNameUniqueness": true,
+    "getApplicationSchemas": true,
+    "assignSchemaToApp": true
+  },
+  "v5Features": {
+    "agentIdentityRegistration": true,
+    "identityRegistryAddress": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432"
+  },
+  "v6Features": {
+    "validatedAgentIdentityLookups": true
+  }
 }

@@ -4,12 +4,47 @@
   "contracts": {
     "AntennaRegistry": {
       "proxy": "0x3Ca2FF0bD1b3633513299EB5d3e2d63e058b0713",
-      "implementation": "0xFa39veis0e8F3E39A41C4D7E74A0af7c80FEbd19"
+      "implementation": "0xB772E7F7568f00F1490f0D31a2E39862c202be1E",
+      "previousImplementation": "0x5C9D63A26D12b56A01842863b4EDC85246fdbE20"
     },
     "TopicKeyManager": {
       "proxy": "0x5a5ea9D408FBA984fFf6e243Dcc71ff6E00C73E4",
       "implementation": "0xA4eb79e4bE89106b8668f982afC35a11050B58f0"
+    },
+    "SchemaRegistry": {
+      "proxy": "0x23D96e610E8E3DA5341a75B77F1BFF7EA9c3A62B",
+      "implementation": "0xD613E524D066E2A7c92c5C9b40045f00ADe5f570",
+      "previousImplementation": "0x4fC5331aaEE83eEb2C1a534e9f3eAFcA78934576"
     }
   },
-  "explorer": "https://snowtrace.io"
+  "explorer": "https://snowtrace.io",
+  "version": "6.0.0",
+  "upgradedAt": "2026-02-07T18:54:01.967Z",
+  "v3Features": {
+    "userNicknames": true,
+    "nicknameCooldown": true,
+    "getNickname": true,
+    "canChangeNickname": true
+  },
+  "v4Features": {
+    "feeExemptTopicOwner": true,
+    "feeExemptAppOwner": true,
+    "feeExemptAppAdmin": true,
+    "feeExemptTopicAdmin": true
+  },
+  "v5Features": {
+    "agentIdentityRegistration": true,
+    "identityRegistryAddress": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432"
+  },
+  "schemaRegistryVersion": "2.0.0",
+  "schemaV2UpgradedAt": "2026-02-07T02:56:19.004Z",
+  "v2SchemaFeatures": {
+    "appScopedSchemas": true,
+    "perAppNameUniqueness": true,
+    "getApplicationSchemas": true,
+    "assignSchemaToApp": true
+  },
+  "v6Features": {
+    "validatedAgentIdentityLookups": true
+  }
 }

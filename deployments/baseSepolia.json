@@ -1,0 +1,34 @@
+{
+  "network": "baseSepolia",
+  "chainId": 84532,
+  "deployer": "0x7F5Db71C7399f3FE7502cc0f071cf0AF941f68F5",
+  "treasury": "0x7F5Db71C7399f3FE7502cc0f071cf0AF941f68F5",
+  "contracts": {
+    "AntennaRegistry": {
+      "proxy": "0xf39b193aedC1Ec9FD6C5ccc24fBAe58ba9f52413",
+      "implementation": "0xB81BfaA04DF92337fcAf49263262679762153Eee"
+    },
+    "TopicKeyManager": {
+      "proxy": "0x5562B553a876CBdc8AA4B3fb0687f22760F4759e",
+      "implementation": "0x0457fa393faE2079901660d9925b4052243e102B"
+    },
+    "SchemaRegistry": {
+      "proxy": "0xB7eB50e9058198b99b5b2589E6D70b2d99d5440a",
+      "implementation": "0x75c130F42139626ebF8F46de664a5fCC1791Be55"
+    }
+  },
+  "identityRegistry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+  "version": "5.0.0",
+  "keyManagerVersion": "1.0.0",
+  "schemaRegistryVersion": "2.0.0",
+  "app": {
+    "id": 1,
+    "name": "ClawtennaChat",
+    "topics": [
+      "general",
+      "announcements",
+      "private"
+    ]
+  },
+  "deployedAt": "2026-02-07T16:19:23.035Z"
+}
