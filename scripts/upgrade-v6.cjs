@@ -4,7 +4,8 @@ const fs = require('fs');
 // Proxy addresses per network
 const PROXY_ADDRESSES = {
   base: "0x5fF6BF04F1B5A78ae884D977a3C80A0D8E2072bF",
-  avalanche: "0x3Ca2FF0bD1b3633513299EB5d3e2d63e058b0713"
+  avalanche: "0x3Ca2FF0bD1b3633513299EB5d3e2d63e058b0713",
+  baseSepolia: "0xf39b193aedC1Ec9FD6C5ccc24fBAe58ba9f52413"
 };
 
 async function main() {

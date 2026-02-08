@@ -6,7 +6,8 @@
   "contracts": {
     "AntennaRegistry": {
       "proxy": "0xf39b193aedC1Ec9FD6C5ccc24fBAe58ba9f52413",
-      "implementation": "0xB81BfaA04DF92337fcAf49263262679762153Eee"
+      "implementation": "0x0f90DA8442C6AC4514C3F7e97ec84d257d5A5Ebf",
+      "previousImplementation": "0x0f90DA8442C6AC4514C3F7e97ec84d257d5A5Ebf"
     },
     "TopicKeyManager": {
       "proxy": "0x5562B553a876CBdc8AA4B3fb0687f22760F4759e",
@@ -18,7 +19,7 @@
     }
   },
   "identityRegistry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "keyManagerVersion": "1.0.0",
   "schemaRegistryVersion": "2.0.0",
   "app": {
@@ -30,5 +31,9 @@
       "private"
     ]
   },
-  "deployedAt": "2026-02-07T16:19:23.035Z"
+  "deployedAt": "2026-02-07T16:19:23.035Z",
+  "upgradedAt": "2026-02-08T01:32:46.288Z",
+  "v6Features": {
+    "validatedAgentIdentityLookups": true
+  }
 }
