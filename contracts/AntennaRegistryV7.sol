@@ -131,7 +131,7 @@ contract AntennaRegistryV7 is AntennaRegistryV6 {
      * @param topicId Topic ID
      * @param payload Message payload (encrypted)
      */
-    function sendMessage(uint256 topicId, bytes calldata payload) external override nonReentrant {
+    function sendMessage(uint256 topicId, bytes calldata payload) external virtual override nonReentrant {
         Topic storage topic = topics[topicId];
         if (topic.id == 0) revert TopicNotFound();
         if (!canWriteToTopic(topicId, msg.sender)) revert NotAuthorized();
@@ -235,7 +235,7 @@ contract AntennaRegistryV7 is AntennaRegistryV6 {
     /**
      * @notice Get contract version
      */
-    function getVersion() external pure override returns (string memory) {
+    function getVersion() external pure virtual override returns (string memory) {
         return VERSION_V7;
     }
 }
