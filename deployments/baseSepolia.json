@@ -6,8 +6,8 @@
   "contracts": {
     "AntennaRegistry": {
       "proxy": "0xf39b193aedC1Ec9FD6C5ccc24fBAe58ba9f52413",
-      "implementation": "0x0f90DA8442C6AC4514C3F7e97ec84d257d5A5Ebf",
-      "previousImplementation": "0x0f90DA8442C6AC4514C3F7e97ec84d257d5A5Ebf"
+      "implementation": "0xC15fF7Ee873d85fc4e36c52fE4c2E5cf9Ad4771c",
+      "previousImplementation": "0xC15fF7Ee873d85fc4e36c52fE4c2E5cf9Ad4771c"
     },
     "TopicKeyManager": {
       "proxy": "0x5562B553a876CBdc8AA4B3fb0687f22760F4759e",
@@ -19,7 +19,7 @@
     }
   },
   "identityRegistry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "keyManagerVersion": "1.0.0",
   "schemaRegistryVersion": "2.0.0",
   "app": {
@@ -32,8 +32,14 @@
     ]
   },
   "deployedAt": "2026-02-07T16:19:23.035Z",
-  "upgradedAt": "2026-02-08T01:32:46.288Z",
+  "upgradedAt": "2026-02-08T16:54:36.786Z",
   "v6Features": {
     "validatedAgentIdentityLookups": true
+  },
+  "v7Features": {
+    "universalTripleSplit": true,
+    "platformFeeBps": 500,
+    "appOwnerFeeBps": 500,
+    "topicOwnerBps": 9000
   }
 }

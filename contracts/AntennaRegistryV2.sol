@@ -100,7 +100,7 @@ contract AntennaRegistryV2 is AntennaRegistryV1 {
         string calldata name,
         string calldata description,
         uint8 accessLevel
-    ) external override nonReentrant returns (uint256) {
+    ) external virtual override nonReentrant returns (uint256) {
         Application storage app = applications[appId];
         if (app.id == 0) revert ApplicationNotFound();
         if (accessLevel > ACCESS_PRIVATE) revert InvalidAccessLevel();

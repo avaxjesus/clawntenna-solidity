@@ -24,7 +24,7 @@ contract AntennaRegistryV4 is AntennaRegistryV3 {
      * @param topicId Topic ID
      * @param payload Message payload (encrypted)
      */
-    function sendMessage(uint256 topicId, bytes calldata payload) external override nonReentrant {
+    function sendMessage(uint256 topicId, bytes calldata payload) external virtual override nonReentrant {
         Topic storage topic = topics[topicId];
         if (topic.id == 0) revert TopicNotFound();
         if (!canWriteToTopic(topicId, msg.sender)) revert NotAuthorized();

@@ -4,8 +4,8 @@
   "contracts": {
     "AntennaRegistry": {
       "proxy": "0x3Ca2FF0bD1b3633513299EB5d3e2d63e058b0713",
-      "implementation": "0xB772E7F7568f00F1490f0D31a2E39862c202be1E",
-      "previousImplementation": "0x5C9D63A26D12b56A01842863b4EDC85246fdbE20"
+      "implementation": "0x80D6D839870Ed09C97999AbC130b3D893F31f0d1",
+      "previousImplementation": "0xB772E7F7568f00F1490f0D31a2E39862c202be1E"
     },
     "TopicKeyManager": {
       "proxy": "0x5a5ea9D408FBA984fFf6e243Dcc71ff6E00C73E4",
@@ -18,8 +18,8 @@
     }
   },
   "explorer": "https://snowtrace.io",
-  "version": "6.0.0",
-  "upgradedAt": "2026-02-07T18:54:01.967Z",
+  "version": "7.0.0",
+  "upgradedAt": "2026-02-09T04:32:03.729Z",
   "v3Features": {
     "userNicknames": true,
     "nicknameCooldown": true,
@@ -46,5 +46,11 @@
   },
   "v6Features": {
     "validatedAgentIdentityLookups": true
+  },
+  "v7Features": {
+    "universalTripleSplit": true,
+    "platformFeeBps": 500,
+    "appOwnerFeeBps": 500,
+    "topicOwnerBps": 9000
   }
 }

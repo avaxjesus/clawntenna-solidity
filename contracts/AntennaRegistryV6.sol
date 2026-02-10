@@ -50,7 +50,7 @@ contract AntennaRegistryV6 is AntennaRegistryV5 {
     /**
      * @notice Get contract version
      */
-    function getVersion() external pure override returns (string memory) {
+    function getVersion() external pure virtual override returns (string memory) {
         return VERSION_V6;
     }
 }
