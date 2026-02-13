@@ -29,7 +29,7 @@ interface IMessageEscrow {
         uint256 amount,
         address recipient,
         address appOwner
-    ) external;
+    ) external payable;
 
     /**
      * @notice Release all pending deposits for a topic (called when topic owner responds)

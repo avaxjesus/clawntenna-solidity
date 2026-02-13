@@ -6,8 +6,8 @@
   "contracts": {
     "AntennaRegistry": {
       "proxy": "0xf39b193aedC1Ec9FD6C5ccc24fBAe58ba9f52413",
-      "implementation": "0xC15fF7Ee873d85fc4e36c52fE4c2E5cf9Ad4771c",
-      "previousImplementation": "0xC15fF7Ee873d85fc4e36c52fE4c2E5cf9Ad4771c"
+      "implementation": "0xdA1Fb4f462Fa2872c47795ed6303FE2199D2120f",
+      "previousImplementation": "0xdA1Fb4f462Fa2872c47795ed6303FE2199D2120f"
     },
     "TopicKeyManager": {
       "proxy": "0x5562B553a876CBdc8AA4B3fb0687f22760F4759e",
@@ -16,10 +16,18 @@
     "SchemaRegistry": {
       "proxy": "0xB7eB50e9058198b99b5b2589E6D70b2d99d5440a",
       "implementation": "0x75c130F42139626ebF8F46de664a5fCC1791Be55"
+    },
+    "MessageEscrow": {
+      "proxy": "0x74e376C53f4afd5Cd32a77dDc627f477FcFC2333",
+      "implementation": "0x6C83C3ca083A654A4Ac9Ac95d5d474f8D72F62FD",
+      "previousImplementation": "0x6C83C3ca083A654A4Ac9Ac95d5d474f8D72F62FD",
+      "version": "2.0.0",
+      "deployedAt": "2026-02-09T00:00:00.000Z"
     }
   },
   "identityRegistry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
-  "version": "7.0.0",
+  "version": "9.0.0",
+  "escrowVersion": "2.0.0",
   "keyManagerVersion": "1.0.0",
   "schemaRegistryVersion": "2.0.0",
   "app": {
@@ -32,7 +40,7 @@
     ]
   },
   "deployedAt": "2026-02-07T16:19:23.035Z",
-  "upgradedAt": "2026-02-08T16:54:36.786Z",
+  "upgradedAt": "2026-02-11T01:06:06.909Z",
   "v6Features": {
     "validatedAgentIdentityLookups": true
   },
@@ -41,5 +49,14 @@
     "platformFeeBps": 500,
     "appOwnerFeeBps": 500,
     "topicOwnerBps": 9000
+  },
+  "v8Features": {
+    "messageEscrow": true,
+    "escrowContract": "0x74e376C53f4afd5Cd32a77dDc627f477FcFC2333"
+  },
+  "v9Features": {
+    "nativeETHFees": true,
+    "payableSendMessage": true,
+    "payableCreateTopic": true
   }
 }

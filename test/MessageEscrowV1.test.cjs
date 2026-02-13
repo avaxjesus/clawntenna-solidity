@@ -229,7 +229,7 @@ describe("MessageEscrowV1", function () {
       expect(d.token).to.equal(tokenAddress);
       expect(d.amount).to.equal(MESSAGE_FEE);
       expect(d.appOwner).to.equal(appOwner.address);
-      expect(d.resolved).to.equal(false);
+      expect(d.status).to.equal(0);
     });
 
     it("should add deposit to pending list", async function () {
@@ -345,7 +345,7 @@ describe("MessageEscrowV1", function () {
 
       // Deposit should be marked resolved
       const d = await escrow.getDeposit(1);
-      expect(d.resolved).to.equal(true);
+      expect(d.status).to.equal(1);
     });
 
     it("should emit DepositReleased event", async function () {
@@ -409,13 +409,13 @@ describe("MessageEscrowV1", function () {
       expect(senderAfter - senderBefore).to.equal(MESSAGE_FEE);
     });
 
-    it("should mark deposit as resolved after refund", async function () {
+    it("should mark deposit as Refunded after refund", async function () {
       await registry.connect(sender1).sendMessage(1, "0x1111");
       await time.increase(ONE_HOUR + 1);
       await escrow.connect(sender1).claimRefund(1);
 
       const d = await escrow.getDeposit(1);
-      expect(d.resolved).to.equal(true);
+      expect(d.status).to.equal(2); // Refunded
     });
 
     it("should remove deposit from pending list after refund", async function () {
@@ -656,7 +656,7 @@ describe("MessageEscrowV1", function () {
 
       // Deposit is resolved, pending list is cleared
       const d = await escrow.getDeposit(1);
-      expect(d.resolved).to.equal(true);
+      expect(d.status).to.equal(1);
 
       // Second release should be a no-op (no pending)
       await registry.connect(topicOwner).sendMessage(1, "0xaa02");
@@ -681,7 +681,7 @@ describe("MessageEscrowV1", function () {
       expect(d.amount).to.equal(MESSAGE_FEE);
       expect(d.appOwner).to.equal(appOwner.address);
       expect(d.timeout).to.equal(ONE_HOUR);
-      expect(d.resolved).to.equal(false);
+      expect(d.status).to.equal(0);
     });
 
     it("getPendingDeposits should return correct list", async function () {
@@ -700,6 +700,34 @@ describe("MessageEscrowV1", function () {
 
     it("canClaimRefund should return false for non-existent deposit", async function () {
       expect(await escrow.canClaimRefund(999)).to.equal(false);
+    });
+
+    it("getDepositStatus should return Pending (0) for new deposit", async function () {
+      await escrow.connect(topicOwner).enableEscrow(1, ONE_HOUR);
+      await registry.connect(sender1).sendMessage(1, "0x1234");
+
+      expect(await escrow.getDepositStatus(1)).to.equal(0);
+    });
+
+    it("getDepositStatus should return Released (1) after release", async function () {
+      await escrow.connect(topicOwner).enableEscrow(1, ONE_HOUR);
+      await registry.connect(sender1).sendMessage(1, "0x1234");
+      await registry.connect(topicOwner).sendMessage(1, "0xaa01");
+
+      expect(await escrow.getDepositStatus(1)).to.equal(1);
+    });
+
+    it("getDepositStatus should return Refunded (2) after refund", async function () {
+      await escrow.connect(topicOwner).enableEscrow(1, ONE_HOUR);
+      await registry.connect(sender1).sendMessage(1, "0x1234");
+      await time.increase(ONE_HOUR + 1);
+      await escrow.connect(sender1).claimRefund(1);
+
+      expect(await escrow.getDepositStatus(1)).to.equal(2);
+    });
+
+    it("getDepositStatus should return 0 for non-existent deposit", async function () {
+      expect(await escrow.getDepositStatus(999)).to.equal(0);
     });
   });
 });

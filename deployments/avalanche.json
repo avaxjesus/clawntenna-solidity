@@ -4,8 +4,8 @@
   "contracts": {
     "AntennaRegistry": {
       "proxy": "0x3Ca2FF0bD1b3633513299EB5d3e2d63e058b0713",
-      "implementation": "0x80D6D839870Ed09C97999AbC130b3D893F31f0d1",
-      "previousImplementation": "0xB772E7F7568f00F1490f0D31a2E39862c202be1E"
+      "implementation": "0xF246d24a45082e967436692543561dfe7B31A61a",
+      "previousImplementation": "0x17544EbEfC331a7f1e3fd9bb76fA1437335E8d7C"
     },
     "TopicKeyManager": {
       "proxy": "0x5a5ea9D408FBA984fFf6e243Dcc71ff6E00C73E4",
@@ -15,11 +15,18 @@
       "proxy": "0x23D96e610E8E3DA5341a75B77F1BFF7EA9c3A62B",
       "implementation": "0xD613E524D066E2A7c92c5C9b40045f00ADe5f570",
       "previousImplementation": "0x4fC5331aaEE83eEb2C1a534e9f3eAFcA78934576"
+    },
+    "MessageEscrow": {
+      "proxy": "0x4068245c35a498Da4336aD1Ab0Fb71ef534bfd03",
+      "version": "1.0.0",
+      "deployedAt": "2026-02-11T02:37:15.320Z",
+      "implementation": "0x9BFFc809D2e544269e9c5daE3568c79139F19944",
+      "previousImplementation": "0x2441094587674968cb367C54566fDB46c6d60fc3"
     }
   },
   "explorer": "https://snowtrace.io",
-  "version": "7.0.0",
-  "upgradedAt": "2026-02-09T04:32:03.729Z",
+  "version": "9.0.0",
+  "upgradedAt": "2026-02-11T02:38:13.217Z",
   "v3Features": {
     "userNicknames": true,
     "nicknameCooldown": true,
@@ -52,5 +59,15 @@
     "platformFeeBps": 500,
     "appOwnerFeeBps": 500,
     "topicOwnerBps": 9000
+  },
+  "v8Features": {
+    "messageEscrow": true,
+    "escrowContract": "0x4068245c35a498Da4336aD1Ab0Fb71ef534bfd03"
+  },
+  "escrowVersion": "2.0.0",
+  "v9Features": {
+    "nativeETHFees": true,
+    "payableSendMessage": true,
+    "payableCreateTopic": true
   }
 }

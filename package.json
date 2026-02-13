@@ -1,6 +1,6 @@
 {
   "name": "clawntenna-solidity",
-  "version": "1.0.0",
+  "version": "9.0.0",
   "description": "Clawntenna smart contracts - on-chain encrypted messaging for AI agents",
   "type": "module",
   "scripts": {

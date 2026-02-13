@@ -35,6 +35,10 @@ contract MessageEscrowV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard
     uint256 public constant MAX_TIMEOUT = 7 days;
     uint256 public constant MAX_BATCH_SIZE = 50;
 
+    // ============ Enums ============
+
+    enum DepositStatus { Pending, Released, Refunded }
+
     // ============ Structs ============
 
     struct EscrowDeposit {
@@ -47,7 +51,7 @@ contract MessageEscrowV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard
         address appOwner;      // receives 5%
         uint64 depositedAt;
         uint64 timeout;
-        bool resolved;
+        DepositStatus status;
     }
 
     // ============ State ============
@@ -176,7 +180,7 @@ contract MessageEscrowV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard
         uint256 amount,
         address recipient,
         address appOwner
-    ) external onlyRegistry {
+    ) external payable virtual onlyRegistry {
         depositCount++;
         uint256 depositId = depositCount;
 
@@ -190,7 +194,7 @@ contract MessageEscrowV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard
             appOwner: appOwner,
             depositedAt: uint64(block.timestamp),
             timeout: topicEscrowTimeout[topicId],
-            resolved: false
+            status: DepositStatus.Pending
         });
 
         _pendingDepositIds[topicId].push(depositId);
@@ -215,10 +219,10 @@ contract MessageEscrowV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard
             uint256 depositId = pending[i];
             EscrowDeposit storage deposit = deposits[depositId];
 
-            if (deposit.resolved) continue;
+            if (deposit.status != DepositStatus.Pending) continue;
 
             // CEI: mark resolved before transfers
-            deposit.resolved = true;
+            deposit.status = DepositStatus.Released;
 
             _distributeDeposit(deposit);
         }
@@ -283,10 +287,17 @@ contract MessageEscrowV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard
         address appOwner,
         uint64 depositedAt,
         uint64 timeout,
-        bool resolved
+        uint8 status
     ) {
         EscrowDeposit storage d = deposits[depositId];
-        return (d.id, d.topicId, d.sender, d.recipient, d.token, d.amount, d.appOwner, d.depositedAt, d.timeout, d.resolved);
+        return (d.id, d.topicId, d.sender, d.recipient, d.token, d.amount, d.appOwner, d.depositedAt, d.timeout, uint8(d.status));
+    }
+
+    /**
+     * @notice Get deposit status (0=Pending, 1=Released, 2=Refunded)
+     */
+    function getDepositStatus(uint256 depositId) external view returns (uint8) {
+        return uint8(deposits[depositId].status);
     }
 
     /**
@@ -301,14 +312,14 @@ contract MessageEscrowV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard
      */
     function canClaimRefund(uint256 depositId) external view returns (bool) {
         EscrowDeposit storage d = deposits[depositId];
-        if (d.id == 0 || d.resolved) return false;
+        if (d.id == 0 || d.status != DepositStatus.Pending) return false;
         return block.timestamp >= d.depositedAt + d.timeout;
     }
 
     /**
      * @notice Get contract version
      */
-    function getVersion() external pure returns (string memory) {
+    function getVersion() external pure virtual returns (string memory) {
         return VERSION;
     }
 
@@ -317,7 +328,7 @@ contract MessageEscrowV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard
     /**
      * @dev Distribute a deposit with the 90/5/5 split
      */
-    function _distributeDeposit(EscrowDeposit storage deposit) internal {
+    function _distributeDeposit(EscrowDeposit storage deposit) internal virtual {
         IERC20 token = IERC20(deposit.token);
 
         uint256 platformFee = (deposit.amount * PLATFORM_FEE_BPS) / BPS_DENOMINATOR;
@@ -349,15 +360,15 @@ contract MessageEscrowV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGuard
     /**
      * @dev Process a single refund
      */
-    function _processRefund(uint256 depositId) internal {
+    function _processRefund(uint256 depositId) internal virtual {
         EscrowDeposit storage deposit = deposits[depositId];
         if (deposit.id == 0) revert DepositNotFound();
-        if (deposit.resolved) revert AlreadyResolved();
+        if (deposit.status != DepositStatus.Pending) revert AlreadyResolved();
         if (msg.sender != deposit.sender) revert NotDepositor();
         if (block.timestamp < deposit.depositedAt + deposit.timeout) revert TimeoutNotExpired();
 
         // CEI: mark resolved before transfer
-        deposit.resolved = true;
+        deposit.status = DepositStatus.Refunded;
 
         // Remove from pending array
         _removePendingDeposit(deposit.topicId, depositId);

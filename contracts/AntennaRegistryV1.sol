@@ -258,7 +258,7 @@ contract AntennaRegistryV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGua
         string calldata name,
         string calldata description,
         uint8 accessLevel
-    ) external virtual nonReentrant returns (uint256) {
+    ) external payable virtual nonReentrant returns (uint256) {
         Application storage app = applications[appId];
         if (app.id == 0) revert ApplicationNotFound();
         if (accessLevel > ACCESS_PRIVATE) revert InvalidAccessLevel();
@@ -406,7 +406,7 @@ contract AntennaRegistryV1 is UUPSUpgradeable, OwnableUpgradeable, ReentrancyGua
     
     // ============ Messaging Functions ============
     
-    function sendMessage(uint256 topicId, bytes calldata payload) external virtual {
+    function sendMessage(uint256 topicId, bytes calldata payload) external payable virtual {
         Topic storage topic = topics[topicId];
         if (topic.id == 0) revert TopicNotFound();
         if (!canWriteToTopic(topicId, msg.sender)) revert NotAuthorized();

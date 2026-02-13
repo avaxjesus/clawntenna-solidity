@@ -4,8 +4,8 @@
   "contracts": {
     "AntennaRegistry": {
       "proxy": "0x5fF6BF04F1B5A78ae884D977a3C80A0D8E2072bF",
-      "implementation": "0xC32Bb8b526091B7Dd4a2185B6Fb11AAEd228D31C",
-      "previousImplementation": "0x0457fa393faE2079901660d9925b4052243e102B"
+      "implementation": "0x23345DA8b5E7C2cb6253b84863E636da84B852D5",
+      "previousImplementation": "0x8600292d3AE322D0b40402ce3AB76Ad4bC50dBc7"
     },
     "TopicKeyManager": {
       "proxy": "0xdc302ff43a34F6aEa19426D60C9D150e0661E4f4",
@@ -15,11 +15,19 @@
       "proxy": "0x5c11d2eA4470eD9025D810A21a885FE16dC987Bd",
       "implementation": "0xC7DFB6588980CAd04862e2715810227082Cd9E61",
       "previousImplementation": "0xa9F71EA6048D08C0Cc263c6aC4a542c99A6A9f39"
+    },
+    "MessageEscrow": {
+      "proxy": "0x04eC9a25C942192834F447eC9192831B56Ae2D7D",
+      "implementation": "0x463aD6e3AcC83C95713709aF03510753f1284008",
+      "previousImplementation": "0x817F695DA1E5dBCf692e8a4755c90c5834267A5a",
+      "version": "2.0.0",
+      "deployedAt": "2026-02-11T02:34:47.648Z"
     }
   },
   "explorer": "https://basescan.org",
-  "version": "7.0.0",
-  "upgradedAt": "2026-02-09T04:32:24.020Z",
+  "version": "9.0.0",
+  "escrowVersion": "2.0.0",
+  "upgradedAt": "2026-02-11T02:35:30.000Z",
   "v3Features": {
     "userNicknames": true,
     "nicknameCooldown": true,
@@ -52,5 +60,14 @@
     "platformFeeBps": 500,
     "appOwnerFeeBps": 500,
     "topicOwnerBps": 9000
+  },
+  "v8Features": {
+    "messageEscrow": true,
+    "escrowContract": "0x04eC9a25C942192834F447eC9192831B56Ae2D7D"
+  },
+  "v9Features": {
+    "nativeETHFees": true,
+    "payableSendMessage": true,
+    "payableCreateTopic": true
   }
 }

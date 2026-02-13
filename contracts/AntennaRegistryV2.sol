@@ -73,7 +73,7 @@ contract AntennaRegistryV2 is AntennaRegistryV1 {
      * @param topicId Topic ID
      * @param payload Message payload (encrypted)
      */
-    function sendMessage(uint256 topicId, bytes calldata payload) external virtual override nonReentrant {
+    function sendMessage(uint256 topicId, bytes calldata payload) external payable virtual override nonReentrant {
         Topic storage topic = topics[topicId];
         if (topic.id == 0) revert TopicNotFound();
         if (!canWriteToTopic(topicId, msg.sender)) revert NotAuthorized();
@@ -100,7 +100,7 @@ contract AntennaRegistryV2 is AntennaRegistryV1 {
         string calldata name,
         string calldata description,
         uint8 accessLevel
-    ) external virtual override nonReentrant returns (uint256) {
+    ) external payable virtual override nonReentrant returns (uint256) {
         Application storage app = applications[appId];
         if (app.id == 0) revert ApplicationNotFound();
         if (accessLevel > ACCESS_PRIVATE) revert InvalidAccessLevel();
